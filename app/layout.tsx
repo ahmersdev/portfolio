@@ -66,13 +66,13 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL("https://acme.com"),
+  metadataBase: new URL("https://ahmersdev-portfolio.vercel.app/"),
   openGraph: {
     title:
       "Ahmer's Dev | Streamline Your Digital Experience | Web Application Developer",
     description:
       "With expertise in HTML5, XHTML, CSS3, and Bootstrap, I bring seamless visual appeal and responsive design to your website. Leveraging JavaScript, NextJS, ReactJS, React TSX/Typescript, and JSON, I create dynamic and interactive web experiences that captivate your audience.",
-    // url: "https://ahmersdev.vercel.app/",
+    url: "https://ahmersdev-portfolio.vercel.app//",
     siteName: "Ahmer's Dev | Web Application Developer",
     images: [
       { url: "/brand_logo.png", width: 800, height: 600 },
