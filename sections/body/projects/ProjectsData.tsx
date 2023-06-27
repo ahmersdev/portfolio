@@ -1,8 +1,5 @@
 import AbstergoInter from "@/assets/projects/AbstergoInter.png";
-import AbstergoStore from "@/assets/projects/AbstergoStore.png";
-import FosterApp from "@/assets/projects/FosterApp.png";
 import AbstergoInterCover from "@/assets/projects/AbstergoInterCover.png";
-import FosterAppCover from "@/assets/projects/FosterAppCover.png";
 
 export const PROJECTSARRAY = [
   {

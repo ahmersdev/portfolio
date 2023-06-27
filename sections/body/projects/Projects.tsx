@@ -107,7 +107,7 @@ const Projects = () => {
                   <Box>{details?.description}</Box>
                 </Box>
                 <Box pt={"2rem"}>
-                  <Link href={"portfolio"}>
+                  <Link href={details.link}>
                     <GlobalButton text="View Demo" />
                   </Link>
                 </Box>
