@@ -3,7 +3,7 @@ import Image from "next/image";
 import ProjectsTitle from "@/assets/projects/ProjectsTitle.png";
 import ProjectActive from "@/assets/projects/ProjectsActive.svg";
 import Link from "next/link";
-import { PROJECTSTAB, PROJECTSDETAILS } from "./ProjectsData";
+import { PROJECTSARRAY } from "./ProjectsData";
 import { useState } from "react";
 import {
   MUIBORDERRADIUSROUNDED,
@@ -16,7 +16,9 @@ import {
 import GlobalButton from "@/ui/button/GlobalButton";
 
 const Projects = () => {
-  const [details, setDetails] = useState<number>(1);
+  const [details, setDetails] = useState<any>(PROJECTSARRAY[0]);
+
+  console.log(details);
 
   return (
     <Box id="projects" mt={10}>
@@ -24,7 +26,7 @@ const Projects = () => {
         <Box width={{ xs: "90%", md: "50%" }}>
           <Image
             src={ProjectsTitle}
-            alt={"Ahmer's Dev | Contact"}
+            alt={"Ahmer's Dev | Projects"}
             width={0}
             height={0}
             style={{ width: "100%", height: "100%" }}
@@ -43,10 +45,10 @@ const Projects = () => {
             width={"90%"}
             minWidth={"1020px"}
           >
-            {PROJECTSTAB?.map((item) => (
+            {PROJECTSARRAY?.map((item: any) => (
               <Grid
                 item
-                key={item?.filterId}
+                key={item?.id}
                 minWidth={"100px"}
                 textAlign={"center"}
                 margin={"auto"}
@@ -54,11 +56,11 @@ const Projects = () => {
                 <Image
                   src={item?.src}
                   alt={item?.alt}
-                  onClick={() => setDetails(item?.filterId)}
+                  onClick={() => setDetails(item)}
                   style={{
                     cursor: "pointer",
                     border: `${
-                      item?.filterId === details
+                      item?.id === details?.id
                         ? `2px solid ${MUIPRIMARYCOLOR}`
                         : "none"
                     }`,
@@ -67,7 +69,7 @@ const Projects = () => {
                   }}
                   placeholder="empty"
                 />
-                {item?.filterId === details && (
+                {item?.id === details?.id && (
                   <Box textAlign={"center"}>
                     <Image src={ProjectActive} alt="" placeholder="empty" />
                   </Box>
@@ -76,6 +78,7 @@ const Projects = () => {
             ))}
           </Grid>
         </Box>
+
         <Grid
           container
           pt={"3rem"}
@@ -88,33 +91,27 @@ const Projects = () => {
             display={"flex"}
             alignItems={"center"}
             pt={{ xs: "2rem", md: "unset" }}
-            position={"relative"}
           >
             <Box width={{ xs: "90%", md: "70%" }}>
-              {PROJECTSDETAILS?.map(
-                (item: any) =>
-                  item?.filterId === details && (
-                    <Box key={item?.filterId} pt={"2rem"}>
-                      <Box fontWeight={MUIFONTWEIGHT700} fontSize={MUIFONT48}>
-                        {item?.title}
-                      </Box>
-                      <Box
-                        pt={"2rem"}
-                        letterSpacing={"0.05rem"}
-                        lineHeight={"150%"}
-                        fontSize={MUIFONT16}
-                        color={MUISECONDARYCOLOR}
-                      >
-                        <Box>{item?.description}</Box>
-                      </Box>
-                      <Box pt={"2rem"}>
-                        <Link href={"portfolio"}>
-                          <GlobalButton text="View Demo" />
-                        </Link>
-                      </Box>
-                    </Box>
-                  )
-              )}
+              <Box pt={"2rem"}>
+                <Box fontWeight={MUIFONTWEIGHT700} fontSize={MUIFONT48}>
+                  {details?.title}
+                </Box>
+                <Box
+                  pt={"2rem"}
+                  letterSpacing={"0.05rem"}
+                  lineHeight={"150%"}
+                  fontSize={MUIFONT16}
+                  color={MUISECONDARYCOLOR}
+                >
+                  <Box>{details?.description}</Box>
+                </Box>
+                <Box pt={"2rem"}>
+                  <Link href={"portfolio"}>
+                    <GlobalButton text="View Demo" />
+                  </Link>
+                </Box>
+              </Box>
             </Box>
           </Grid>
           <Grid
@@ -124,23 +121,16 @@ const Projects = () => {
             display={"flex"}
             alignItems={"center"}
             pl={{ xs: "10%", md: "unset" }}
-            position={"relative"}
           >
-            {PROJECTSDETAILS?.map(
-              (item: any) =>
-                item?.filterId === details && (
-                  <Image
-                    src={item?.img}
-                    alt={item?.title}
-                    key={item?.filterId}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "90%", height: "auto" }}
-                    placeholder="empty"
-                  />
-                )
-            )}
+            <Image
+              src={details?.img}
+              alt={details?.title}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "90%", height: "auto" }}
+              placeholder="empty"
+            />
           </Grid>
         </Grid>
       </Box>
