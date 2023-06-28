@@ -77,15 +77,13 @@ const Projects = () => {
                 margin={"auto"}
               >
                 <Image
-                  src={"https://photos.app.goo.gl/wd7PfJqZBtgKSNJF8"}
+                  src={`${item?.tab ?? "/"}`}
                   alt={item?.alt}
                   onClick={() => setDetails(item)}
-                  width={0}
-                  height={0}
+                  width={75}
+                  height={75}
                   style={{
                     cursor: "pointer",
-                    width: "100%",
-                    height: "100%",
                     border: `${
                       item?.id === details?.id
                         ? `2px solid ${MUIPRIMARYCOLOR}`
@@ -134,7 +132,7 @@ const Projects = () => {
                   <Box>{details?.description}</Box>
                 </Box>
                 <Box pt={"2rem"}>
-                  <Link href={details?.link ?? "/"}>
+                  <Link href={details?.link ?? "/"} target="_blank">
                     <GlobalButton text="View Demo" />
                   </Link>
                 </Box>
@@ -150,7 +148,7 @@ const Projects = () => {
             pl={{ xs: "10%", md: "unset" }}
           >
             <Image
-              src={"https://photos.app.goo.gl/wd7PfJqZBtgKSNJF8"}
+              src={`${details?.src ?? "/"}`}
               alt={details?.title}
               width={0}
               height={0}
