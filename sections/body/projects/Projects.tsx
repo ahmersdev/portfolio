@@ -3,8 +3,7 @@ import Image from "next/image";
 import ProjectsTitle from "@/assets/projects/ProjectsTitle.png";
 import ProjectActive from "@/assets/projects/ProjectsActive.svg";
 import Link from "next/link";
-import { PROJECTSARRAY } from "./ProjectsData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   MUIBORDERRADIUSROUNDED,
   MUIFONT16,
@@ -14,11 +13,35 @@ import {
   MUISECONDARYCOLOR,
 } from "@/contants/variables";
 import GlobalButton from "@/ui/button/GlobalButton";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "@/config/firestore";
 
 const Projects = () => {
-  const [details, setDetails] = useState<any>(PROJECTSARRAY[0]);
+  const [PROJECTSARRAY, setPROJECTSARRAY] = useState<any>(null);
+  const [details, setDetails] = useState<any>(null);
 
-  console.log(details);
+  const DBARRAY = async () => {
+    let PROJECTSARRAY: any = [];
+    try {
+      const array = await getDocs(collection(db, "PROJECTSARRAY"));
+
+      array.forEach((data: any) => {
+        PROJECTSARRAY.push({
+          id: data.id,
+          ...data.data(),
+        });
+      });
+
+      setPROJECTSARRAY(PROJECTSARRAY);
+      setDetails(PROJECTSARRAY[0]);
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  };
+
+  useEffect(() => {
+    DBARRAY();
+  }, []);
 
   return (
     <Box id="projects" mt={10}>
@@ -54,11 +77,15 @@ const Projects = () => {
                 margin={"auto"}
               >
                 <Image
-                  src={item?.src}
+                  src={"https://photos.app.goo.gl/wd7PfJqZBtgKSNJF8"}
                   alt={item?.alt}
                   onClick={() => setDetails(item)}
+                  width={0}
+                  height={0}
                   style={{
                     cursor: "pointer",
+                    width: "100%",
+                    height: "100%",
                     border: `${
                       item?.id === details?.id
                         ? `2px solid ${MUIPRIMARYCOLOR}`
@@ -107,7 +134,7 @@ const Projects = () => {
                   <Box>{details?.description}</Box>
                 </Box>
                 <Box pt={"2rem"}>
-                  <Link href={details.link}>
+                  <Link href={details?.link ?? "/"}>
                     <GlobalButton text="View Demo" />
                   </Link>
                 </Box>
@@ -123,7 +150,7 @@ const Projects = () => {
             pl={{ xs: "10%", md: "unset" }}
           >
             <Image
-              src={details?.img}
+              src={"https://photos.app.goo.gl/wd7PfJqZBtgKSNJF8"}
               alt={details?.title}
               width={0}
               height={0}
