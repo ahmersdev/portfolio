@@ -13,6 +13,7 @@ import {
 } from "@/contants/variables";
 import CircularProgress from "@mui/material/CircularProgress";
 import GlobalButton from "../button/GlobalButton";
+import { sendContactForm } from "@/lib/api";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -56,17 +57,17 @@ const ContactForm = () => {
         initialValues={CONTACTFORMINTIALVALUES}
         validationSchema={CONTACTFORVALIDATIONSCHEMA}
         onSubmit={async (values, { resetForm }) => {
-          // try {
-          //   setLoading(true);
-          //   await sendContactForm(values);
-          //   resetForm();
-          //   setSuccessSnackbar(true);
-          //   setLoading(false);
-          // } catch (error) {
-          //   resetForm();
-          //   setErrorSnackbar(true);
-          //   setLoading(false);
-          // }
+          try {
+            setLoading(true);
+            await sendContactForm(values);
+            resetForm();
+            setSuccessSnackbar(true);
+            setLoading(false);
+          } catch (error) {
+            resetForm();
+            setErrorSnackbar(true);
+            setLoading(false);
+          }
         }}
       >
         {(formik) => (

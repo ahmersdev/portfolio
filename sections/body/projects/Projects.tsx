@@ -78,7 +78,7 @@ const Projects = () => {
               >
                 <Image
                   src={`${item?.tab ?? "/"}`}
-                  alt={item?.alt}
+                  alt={item?.alt ?? "ahmersdev"}
                   onClick={() => setDetails(item)}
                   width={75}
                   height={75}
@@ -96,7 +96,11 @@ const Projects = () => {
                 />
                 {item?.id === details?.id && (
                   <Box textAlign={"center"}>
-                    <Image src={ProjectActive} alt="" placeholder="empty" />
+                    <Image
+                      src={ProjectActive}
+                      alt="ahmersdev"
+                      placeholder="empty"
+                    />
                   </Box>
                 )}
               </Grid>
@@ -149,7 +153,7 @@ const Projects = () => {
           >
             <Image
               src={`${details?.src ?? "/"}`}
-              alt={details?.title}
+              alt={details?.title ?? "ahmersdev"}
               width={0}
               height={0}
               sizes="100vw"

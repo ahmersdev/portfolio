@@ -11,7 +11,7 @@ export const CONTACTFORMINTIALVALUES = {
 export const CONTACTFORVALIDATIONSCHEMA = Yup.object().shape({
   name: Yup.string().required("Please Enter Your Name!"),
   email: Yup.string().email().required("Please Enter Your Email!"),
-  phone: Yup.string().required("Please Enter Your Phone Number!"),
+  phone: Yup.string(),
   subject: Yup.string().required("Please Enter Your Subject!"),
   message: Yup.string().required("Please Enter Your Message!"),
 });
