@@ -4,14 +4,13 @@ import { APPMENUITEMS } from "./AppMenuData";
 import Link from "next/link";
 import {
   MUIFONTWEIGHT500,
-  MUIPRIMARYCOLOR,
   MUISECONDARYCOLOR,
   MUITERTIARYCOLOR,
 } from "@/contants/variables";
 import GlobalButton from "../button/GlobalButton";
 
 const AppMenu = ({ setOpenDrawer }: any) => {
-  const [url, setUrl] = useState("#home");
+  const [url, setUrl] = useState("home");
 
   return (
     <Fragment>
