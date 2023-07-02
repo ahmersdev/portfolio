@@ -156,9 +156,8 @@ const Projects = () => {
               alt={details?.title ?? "ahmersdev"}
               width={0}
               height={0}
-              sizes="100vw"
+              sizes="90vw"
               style={{ width: "90%", height: "auto" }}
-              placeholder="empty"
             />
           </Grid>
         </Grid>

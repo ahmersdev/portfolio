@@ -57,9 +57,12 @@ const AllProjects = () => {
       <Grid container spacing={5}>
         {arr?.map((item: any, index: any) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <img
+            <Image
               src={`${item?.src ?? "/"}`}
               alt={item?.alt ?? "ahmersdev"}
+              sizes="100vw"
+              width={0}
+              height={0}
               style={{
                 width: "100%",
                 height: "100%",
